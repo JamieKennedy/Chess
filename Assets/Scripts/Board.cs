@@ -23,6 +23,8 @@ public class Board : MonoBehaviour {
             for (int x = 0; x < 8; x++) {
                 Vector3 pos = bottomLeft + new Vector3(x, y, 0);
                 currentTile = Instantiate(tilePrefab, pos, Quaternion.identity);
+                board[y, x] = currentTile;
+                currentTile.transform.parent = this.gameObject.transform;
                 SpriteRenderer sr = currentTile.GetComponent<SpriteRenderer>();
                 SetSprite(x, y, ref sr);
             }
