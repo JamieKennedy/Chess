@@ -29,5 +29,33 @@ public class Board : MonoBehaviour {
         board = setup.GetBoard();
     }
 
+    public void MovePiece(GameObject tileA, GameObject tileB) {
+        Tile tileAComponent = tileA.GetComponent<Tile>();
+        Tile tileBComponent = tileA.GetComponent<Tile>();
+        GameObject tileAPiece = tileAComponent.piece;
+        GameObject tileBPiece = tileBComponent.piece;
 
+        if (tileAPiece) {
+            Piece tileAPieceComponent = tileAPiece.GetComponent<Piece>();
+            if (tileBPiece) {
+                Piece tileBPieceComponent = tileBPiece.GetComponent<Piece>();
+
+                tileBPieceComponent.parentTile = null;
+                tileBPiece.transform.position = new Vector3(0, 0, 0);
+
+                tileAComponent.piece = null;
+                tileBComponent.piece = tileAPiece;
+                tileAPieceComponent.parentTile = tileB;
+
+                tileAPiece.transform.position = tileB.transform.position;
+            } else {
+                tileAComponent.piece = null;
+                tileBComponent.piece = tileAPiece;
+                tileAPieceComponent.parentTile = tileB;
+
+                tileAPiece.transform.position = tileB.transform.position;
+            }
+
+        }
+    }
 }
