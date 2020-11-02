@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7636b93ca41414a89fed7c735f3c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBeingDragged: 0
 --- !u!61 &-5100973739315870849
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -8,4 +8,6 @@ public class Piece : MonoBehaviour {
     public Board.Colours colour;
 
     public GameObject parentTile;
+
+    public bool canMove = true;
 }

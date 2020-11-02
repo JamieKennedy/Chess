@@ -21,6 +21,11 @@ public class Board : MonoBehaviour {
 
     public GameObject[,] board = new GameObject[8, 8];
 
+    private int blackDeathCount, whiteDeathCount;
+    private Vector3 blackDeathPos = new Vector3(-4.25f, 4.3f, 0f);
+    private Vector3 whiteDeathPos = new Vector3(-4.25f, -4.3f, 0f);
+
+
 
     public void Start() {
         BoardSetup setup = this.gameObject.GetComponent<BoardSetup>();
@@ -30,33 +35,60 @@ public class Board : MonoBehaviour {
         board = setup.GetBoard();
     }
 
-    public void MovePiece(GameObject tileA, GameObject tileB) {
+    public void MovePiece(GameObject tileA, GameObject tileB, GameObject piece) {
         Tile tileAComponent = tileA.GetComponent<Tile>();
-        Tile tileBComponent = tileA.GetComponent<Tile>();
-        GameObject tileAPiece = tileAComponent.piece;
+        Tile tileBComponent = tileB.GetComponent<Tile>();
         GameObject tileBPiece = tileBComponent.piece;
 
-        if (tileAPiece) {
-            Piece tileAPieceComponent = tileAPiece.GetComponent<Piece>();
+        if (piece) {
+            Piece tileAPieceComponent = piece.GetComponent<Piece>();
             if (tileBPiece) {
                 Piece tileBPieceComponent = tileBPiece.GetComponent<Piece>();
+                if (tileBPieceComponent.colour == tileAPieceComponent.colour) {
+                    piece.transform.position = tileA.transform.position;
+                } else {
+                    tileBPieceComponent.parentTile = null;
+                    KillPiece(tileBPiece);
 
-                tileBPieceComponent.parentTile = null;
-                tileBPiece.transform.position = new Vector3(0, 0, 0);
 
-                tileAComponent.piece = null;
-                tileBComponent.piece = tileAPiece;
-                tileAPieceComponent.parentTile = tileB;
+                    tileAComponent.piece = null;
+                    tileBComponent.piece = piece;
+                    tileAPieceComponent.parentTile = tileB;
 
-                tileAPiece.transform.position = tileB.transform.position;
+                    piece.transform.position = tileB.transform.position;
+                    piece.transform.parent = tileB.transform;
+                }
+
+
+
+
             } else {
+                tileBComponent.piece = piece;
                 tileAComponent.piece = null;
-                tileBComponent.piece = tileAPiece;
                 tileAPieceComponent.parentTile = tileB;
 
-                tileAPiece.transform.position = tileB.transform.position;
+                piece.transform.position = tileB.transform.position;
+                piece.transform.parent = tileB.transform;
             }
 
         }
+    }
+
+    private void KillPiece(GameObject piece) {
+        Piece pieceComponent = piece.GetComponent<Piece>();
+        pieceComponent.canMove = false;
+        if (pieceComponent.colour == Colours.white) {
+            whiteDeathCount++;
+            piece.transform.localScale *= 0.5f;
+            piece.transform.position = whiteDeathPos + new Vector3(0.5f * whiteDeathCount, 0f, 0f);
+        } else {
+            blackDeathCount++;
+            piece.transform.localScale *= 0.5f;
+            piece.transform.position = blackDeathPos + new Vector3(0.5f * blackDeathCount, 0f, 0f);
+        }
+    }
+
+    public GameObject GetTile(int x, int y) {
+        return board[y, x];
     }
 }
