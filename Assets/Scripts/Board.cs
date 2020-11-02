@@ -21,6 +21,7 @@ public class Board : MonoBehaviour {
 
     public GameObject[,] board = new GameObject[8, 8];
 
+
     public void Start() {
         BoardSetup setup = this.gameObject.GetComponent<BoardSetup>();
         setup.InitBoard();

@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1075522610}
   - component: {fileID: 1075522609}
   - component: {fileID: 1075522611}
+  - component: {fileID: 1075522612}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -234,10 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc3936a0c320194fbed60c174f2e5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 1718531859933426560, guid: ee8b7abfafa037d438ef0fb143f39e8b,
-    type: 3}
-  piecePrefab: {fileID: 278868963120493431, guid: f4162c74145f9ea42a6603224949babb,
-    type: 3}
 --- !u!4 &1075522610
 Transform:
   m_ObjectHideFlags: 0
@@ -280,3 +277,19 @@ MonoBehaviour:
   rookWhite: {fileID: 21300000, guid: a86de928e5af59e49bbdbcac6e97e1f9, type: 3}
   pawnBlack: {fileID: 21300000, guid: 5206e66c4b92e274790f9ac4c8319761, type: 3}
   pawnWhite: {fileID: 21300000, guid: a7c02c3003c4a3945b8d9a99f6257790, type: 3}
+--- !u!114 &1075522612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075522608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64f2531944225144956e23700104622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 1718531859933426560, guid: ee8b7abfafa037d438ef0fb143f39e8b,
+    type: 3}
+  piecePrefab: {fileID: 5911342965286098412, guid: f4162c74145f9ea42a6603224949babb,
+    type: 3}

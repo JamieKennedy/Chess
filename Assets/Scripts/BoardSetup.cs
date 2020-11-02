@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
@@ -14,8 +15,8 @@ public class BoardSetup : MonoBehaviour {
 
     Sprites sprites;
 
-    public void Start() {
-        sprites = this.gameObject.GetComponent<Sprites>();
+    public void Awake() {
+        sprites = gameObject.GetComponent<Sprites>();
     }
 
     public GameObject[,] GetBoard() {
