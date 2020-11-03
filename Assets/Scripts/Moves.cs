@@ -396,11 +396,14 @@ public class Moves : MonoBehaviour {
     }
 
     private GameObject GetPieceAtTile(int x, int y) {
-        GameObject tile = board.GetTile(x, y);
-        Tile tileComponent = tile.GetComponent<Tile>();
+        if (IsInBounds(x, y)) {
+            GameObject tile = board.GetTile(x, y);
+            Tile tileComponent = tile.GetComponent<Tile>();
 
-        return tileComponent.piece;
-
+            return tileComponent.piece;
+        } else {
+            return null;
+        }
     }
 
     private Board.Colours GetColour(GameObject piece) {

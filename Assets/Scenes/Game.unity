@@ -264,7 +264,7 @@ MonoBehaviour:
   tileDark: {fileID: 21300000, guid: 69ca9d3a114f7a0408f660cef9c1238c, type: 3}
   tileDarkBorder: {fileID: 21300000, guid: afee50fd50ab19f40b778ddc45895ee7, type: 3}
   tileLight: {fileID: 21300000, guid: 94884129a9113724faae6f807db302db, type: 3}
-  tileLightBorder: {fileID: 0}
+  tileLightBorder: {fileID: 21300000, guid: 8f32bd23119be0a4bbd7a4ad01770be0, type: 3}
   kingBlack: {fileID: 21300000, guid: 37a6560c4c506bc46b5416e834b42f0b, type: 3}
   kingWhite: {fileID: 21300000, guid: d8567d6717f7a5347a21e53f2bcd5af8, type: 3}
   queenBlack: {fileID: 21300000, guid: 45ec312fdbacc5f4b950639389137a14, type: 3}
