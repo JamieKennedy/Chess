@@ -9,14 +9,18 @@ public class DragAndDrop : MonoBehaviour {
     private Vector3 defaultScale;
 
     public GameObject tilePieceIsOver;
-    private GameObject gameManager;
+    private GameObject manager;
     private Board board;
     private Piece piece;
 
+    private Moves moves;
+
     private void Start() {
-        gameManager = GameObject.FindGameObjectWithTag("GameController");
-        board = gameManager.GetComponent<Board>();
+        manager = GameObject.FindGameObjectWithTag("GameController");
+        board = manager.GetComponent<Board>();
         piece = gameObject.GetComponent<Piece>();
+        moves = gameObject.GetComponent<Moves>();
+
         defaultScale = gameObject.transform.localScale;
     }
 
@@ -25,6 +29,8 @@ public class DragAndDrop : MonoBehaviour {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (isBeingDragged) {
                 SetTilePieceIsOver();
+                moves.GetMoves();
+                moves.HighlightTiles();
                 gameObject.transform.position = mousePos;
                 gameObject.transform.localScale = defaultScale * 1.2f;
             } else {
@@ -43,6 +49,7 @@ public class DragAndDrop : MonoBehaviour {
     private void OnMouseUp() {
         isBeingDragged = false;
         board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject);
+        moves.ResetTileHighlights();
     }
 
     private void SetTilePieceIsOver() {

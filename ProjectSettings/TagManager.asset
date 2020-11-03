@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile
   - Piece
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: Board
     uniqueID: 1895942181
+    locked: 0
+  - name: Pieces
+    uniqueID: 1072036049
     locked: 0

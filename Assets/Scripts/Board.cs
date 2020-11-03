@@ -21,6 +21,8 @@ public class Board : MonoBehaviour {
 
     public GameObject[,] board = new GameObject[8, 8];
 
+    private GameObject dead;
+
     private int blackDeathCount, whiteDeathCount;
     private Vector3 blackDeathPos = new Vector3(-4.25f, 4.3f, 0f);
     private Vector3 whiteDeathPos = new Vector3(-4.25f, -4.3f, 0f);
@@ -28,6 +30,7 @@ public class Board : MonoBehaviour {
 
 
     public void Start() {
+        dead = GameObject.FindGameObjectWithTag("Dead");
         BoardSetup setup = this.gameObject.GetComponent<BoardSetup>();
         setup.InitBoard();
         setup.InitPieces();
@@ -50,7 +53,6 @@ public class Board : MonoBehaviour {
                     tileBPieceComponent.parentTile = null;
                     KillPiece(tileBPiece);
 
-
                     tileAComponent.piece = null;
                     tileBComponent.piece = piece;
                     tileAPieceComponent.parentTile = tileB;
@@ -58,10 +60,6 @@ public class Board : MonoBehaviour {
                     piece.transform.position = tileB.transform.position;
                     piece.transform.parent = tileB.transform;
                 }
-
-
-
-
             } else {
                 tileBComponent.piece = piece;
                 tileAComponent.piece = null;
@@ -70,12 +68,12 @@ public class Board : MonoBehaviour {
                 piece.transform.position = tileB.transform.position;
                 piece.transform.parent = tileB.transform;
             }
-
         }
     }
 
     private void KillPiece(GameObject piece) {
         Piece pieceComponent = piece.GetComponent<Piece>();
+        piece.transform.parent = dead.transform;
         pieceComponent.canMove = false;
         if (pieceComponent.colour == Colours.white) {
             whiteDeathCount++;

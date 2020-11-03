@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6920652980348732465}
   - component: {fileID: 8324551861486078713}
   - component: {fileID: 3624175219793738909}
+  - component: {fileID: -2684998568304109472}
   - component: {fileID: -8602793249882824397}
   - component: {fileID: -5100973739315870849}
   m_Layer: 0
@@ -99,6 +100,19 @@ MonoBehaviour:
   type: 0
   colour: 0
   parentTile: {fileID: 0}
+  canMove: 1
+--- !u!114 &-2684998568304109472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5911342965286098412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1eb1262c57b854cb734fd55851f894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-8602793249882824397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBeingDragged: 0
+  tilePieceIsOver: {fileID: 0}
 --- !u!61 &-5100973739315870849
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -3,7 +3,23 @@ guid: dea1ee5420af75e499d309f47cd7ee41
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tileDark: {fileID: 21300000, guid: 69ca9d3a114f7a0408f660cef9c1238c, type: 3}
+  - tileDarkBorder: {fileID: 21300000, guid: afee50fd50ab19f40b778ddc45895ee7, type: 3}
+  - tileLight: {fileID: 21300000, guid: 94884129a9113724faae6f807db302db, type: 3}
+  - tileLightBorder: {fileID: 21300000, guid: 8f32bd23119be0a4bbd7a4ad01770be0, type: 3}
+  - kingBlack: {fileID: 21300000, guid: 37a6560c4c506bc46b5416e834b42f0b, type: 3}
+  - kingWhite: {fileID: 21300000, guid: d8567d6717f7a5347a21e53f2bcd5af8, type: 3}
+  - queenBlack: {fileID: 21300000, guid: 45ec312fdbacc5f4b950639389137a14, type: 3}
+  - queenWhite: {fileID: 21300000, guid: a7bddd18849c58c4084cd2351848520b, type: 3}
+  - bishopBlack: {fileID: 21300000, guid: be6ad9946cc46cb45b5fdc84e540c9e8, type: 3}
+  - bishopWhite: {fileID: 21300000, guid: 6d5d2b996014e79479880369328f5f57, type: 3}
+  - knightBlack: {fileID: 21300000, guid: 31f3246942ba0af428befd7920997643, type: 3}
+  - knightWhite: {fileID: 21300000, guid: 9a93c3723f8993e4b8015dab9834415b, type: 3}
+  - rookBlack: {fileID: 21300000, guid: 7de4f615b7dbd8742b6e9134e6799e6b, type: 3}
+  - rookWhite: {fileID: 21300000, guid: a86de928e5af59e49bbdbcac6e97e1f9, type: 3}
+  - pawnBlack: {fileID: 21300000, guid: 5206e66c4b92e274790f9ac4c8319761, type: 3}
+  - pawnWhite: {fileID: 21300000, guid: a7c02c3003c4a3945b8d9a99f6257790, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,7 +6,7 @@ public class Sprites : MonoBehaviour {
     public Sprite tileDark;
     public Sprite tileDarkBorder;
     public Sprite tileLight;
-    public Sprite tileLightBOrder;
+    public Sprite tileLightBorder;
 
     public Sprite kingBlack;
     public Sprite kingWhite;
