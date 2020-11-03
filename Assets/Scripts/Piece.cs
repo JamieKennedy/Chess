@@ -10,4 +10,6 @@ public class Piece : MonoBehaviour {
     public GameObject parentTile;
 
     public bool canMove = true;
+
+    public int moveCount;
 }

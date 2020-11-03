@@ -38,35 +38,43 @@ public class Board : MonoBehaviour {
         board = setup.GetBoard();
     }
 
-    public void MovePiece(GameObject tileA, GameObject tileB, GameObject piece) {
+    public void MovePiece(GameObject tileA, GameObject tileB, GameObject piece, bool valid) {
         Tile tileAComponent = tileA.GetComponent<Tile>();
         Tile tileBComponent = tileB.GetComponent<Tile>();
         GameObject tileBPiece = tileBComponent.piece;
 
         if (piece) {
             Piece tileAPieceComponent = piece.GetComponent<Piece>();
-            if (tileBPiece) {
-                Piece tileBPieceComponent = tileBPiece.GetComponent<Piece>();
-                if (tileBPieceComponent.colour == tileAPieceComponent.colour) {
-                    piece.transform.position = tileA.transform.position;
-                } else {
-                    tileBPieceComponent.parentTile = null;
-                    KillPiece(tileBPiece);
+            if (valid) {
+                if (tileBPiece) {
+                    Piece tileBPieceComponent = tileBPiece.GetComponent<Piece>();
+                    if (tileBPieceComponent.colour == tileAPieceComponent.colour) {
+                        piece.transform.position = tileA.transform.position;
+                    } else {
+                        tileBPieceComponent.parentTile = null;
+                        KillPiece(tileBPiece);
 
-                    tileAComponent.piece = null;
+                        tileAComponent.piece = null;
+                        tileBComponent.piece = piece;
+                        tileAPieceComponent.parentTile = tileB;
+
+                        piece.transform.position = tileB.transform.position;
+                        piece.transform.parent = tileB.transform;
+
+                        tileAPieceComponent.moveCount++;
+                    }
+                } else {
                     tileBComponent.piece = piece;
+                    tileAComponent.piece = null;
                     tileAPieceComponent.parentTile = tileB;
 
                     piece.transform.position = tileB.transform.position;
                     piece.transform.parent = tileB.transform;
+
+                    tileAPieceComponent.moveCount++;
                 }
             } else {
-                tileBComponent.piece = piece;
-                tileAComponent.piece = null;
-                tileAPieceComponent.parentTile = tileB;
-
-                piece.transform.position = tileB.transform.position;
-                piece.transform.parent = tileB.transform;
+                piece.transform.position = tileAPieceComponent.parentTile.transform.position;
             }
         }
     }

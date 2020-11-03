@@ -29,12 +29,7 @@ public class DragAndDrop : MonoBehaviour {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (isBeingDragged) {
                 SetTilePieceIsOver();
-                moves.GetMoves();
-                moves.HighlightTiles();
                 gameObject.transform.position = mousePos;
-                gameObject.transform.localScale = defaultScale * 1.2f;
-            } else {
-                gameObject.transform.localScale = defaultScale;
             }
         }
     }
@@ -43,13 +38,17 @@ public class DragAndDrop : MonoBehaviour {
     private void OnMouseDown() {
         if (Input.GetMouseButtonDown(0)) {
             isBeingDragged = true;
+            moves.GetMoves();
+            moves.HighlightTiles();
+            gameObject.transform.localScale = defaultScale * 1.2f;
         }
     }
 
     private void OnMouseUp() {
         isBeingDragged = false;
-        board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject);
+        board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject, true);
         moves.ResetTileHighlights();
+        gameObject.transform.localScale = defaultScale;
     }
 
     private void SetTilePieceIsOver() {
@@ -65,6 +64,10 @@ public class DragAndDrop : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private bool IsValidMove() {
+        return moves.moves.Contains(tilePieceIsOver);
     }
 
 
