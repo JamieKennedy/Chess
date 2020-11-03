@@ -46,7 +46,7 @@ public class DragAndDrop : MonoBehaviour {
 
     private void OnMouseUp() {
         isBeingDragged = false;
-        board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject, true);
+        board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject, IsValidMove());
         moves.ResetTileHighlights();
         gameObject.transform.localScale = defaultScale;
     }
