@@ -32,22 +32,22 @@ public class Moves : MonoBehaviour {
         parentTileComponent = parentTile.GetComponent<Tile>();
         switch (piece.type) {
             case Board.PieceType.king:
-                moves = GetKingMoves(parentTileComponent.pos);
+                moves = GetTiles(GetKingMoves(parentTileComponent.pos));
                 break;
             case Board.PieceType.queen:
-                moves = GetQueenMoves(parentTileComponent.pos);
+                moves = GetTiles(GetQueenMoves(parentTileComponent.pos));
                 break;
             case Board.PieceType.knight:
-                moves = GetKnightMoves(parentTileComponent.pos);
+                moves = GetTiles(GetKnightMoves(parentTileComponent.pos));
                 break;
             case Board.PieceType.bishop:
-                moves = GetBishopMoves(parentTileComponent.pos);
+                moves = GetTiles(GetBishopMoves(parentTileComponent.pos));
                 break;
             case Board.PieceType.rook:
-                moves = GetRookMoves(parentTileComponent.pos);
+                moves = GetTiles(GetRookMoves(parentTileComponent.pos));
                 break;
             case Board.PieceType.pawn:
-                moves = GetPawnMoves(parentTileComponent.pos);
+                moves = GetTiles(GetPawnMoves(parentTileComponent.pos));
                 break;
             default:
                 break;
@@ -80,8 +80,8 @@ public class Moves : MonoBehaviour {
         }
     }
 
-    private List<GameObject> GetKingMoves(Vector2 pos) {
-        List<GameObject> kingMoves = new List<GameObject>();
+    private List<Vector2> GetKingMoves(Vector2 pos) {
+        List<Vector2> kingMoves = new List<Vector2>();
         Vector2 kingMove;
 
         Vector2[] deltas = new Vector2[] {
@@ -100,15 +100,15 @@ public class Moves : MonoBehaviour {
 
 
             if (IsInBounds(kingMove) && IsFree(kingMove)) {
-                kingMoves.Add(board.GetTile(kingMove));
+                kingMoves.Add(kingMove);
             }
         }
 
         return kingMoves;
     }
 
-    private List<GameObject> GetKnightMoves(Vector2 pos) {
-        List<GameObject> knightMoves = new List<GameObject>();
+    private List<Vector2> GetKnightMoves(Vector2 pos) {
+        List<Vector2> knightMoves = new List<Vector2>();
         Vector2 knightMove;
 
         Vector2[] deltas = new Vector2[] {
@@ -127,15 +127,15 @@ public class Moves : MonoBehaviour {
 
 
             if (IsInBounds(knightMove) && IsFree(knightMove)) {
-                knightMoves.Add(board.GetTile(knightMove));
+                knightMoves.Add(knightMove);
             }
         }
 
         return knightMoves;
     }
 
-    private List<GameObject> GetRookMoves(Vector2 pos) {
-        List<GameObject> rookMoves = new List<GameObject>();
+    private List<Vector2> GetRookMoves(Vector2 pos) {
+        List<Vector2> rookMoves = new List<Vector2>();
         Vector2 increment;
         GameObject pieceAtTile;
         Piece pieceAtTileComponent;
@@ -148,11 +148,11 @@ public class Moves : MonoBehaviour {
             if (IsInBounds(pos + increment) && IsFree(pos + increment)) {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        rookMoves.Add(board.GetTile(pos + increment));
+                        rookMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    rookMoves.Add(board.GetTile(pos + increment));
+                    rookMoves.Add(pos + increment);
                 }
 
             } else {
@@ -168,11 +168,11 @@ public class Moves : MonoBehaviour {
             if (IsInBounds(pos + increment) && IsFree(pos + increment)) {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        rookMoves.Add(board.GetTile(pos + increment));
+                        rookMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    rookMoves.Add(board.GetTile(pos + increment));
+                    rookMoves.Add(pos + increment);
                 }
             } else {
                 break;
@@ -188,11 +188,11 @@ public class Moves : MonoBehaviour {
             if (IsInBounds(pos + increment) && IsFree(pos + increment)) {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        rookMoves.Add(board.GetTile(pos + increment));
+                        rookMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    rookMoves.Add(board.GetTile(pos + increment));
+                    rookMoves.Add(pos + increment);
                 }
             } else {
                 break;
@@ -209,11 +209,11 @@ public class Moves : MonoBehaviour {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     pieceAtTileComponent = piece.GetComponent<Piece>();
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        rookMoves.Add(board.GetTile(pos + increment));
+                        rookMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    rookMoves.Add(board.GetTile(pos + increment));
+                    rookMoves.Add(pos + increment);
                 }
             } else {
                 break;
@@ -225,8 +225,8 @@ public class Moves : MonoBehaviour {
 
     }
 
-    private List<GameObject> GetBishopMoves(Vector2 pos) {
-        List<GameObject> bishopMoves = new List<GameObject>();
+    private List<Vector2> GetBishopMoves(Vector2 pos) {
+        List<Vector2> bishopMoves = new List<Vector2>();
         Vector2 increment;
         GameObject pieceAtTile;
         Piece pieceAtTileComponent;
@@ -245,11 +245,11 @@ public class Moves : MonoBehaviour {
             if (IsInBounds(pos + increment) && IsFree(pos + increment)) {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        bishopMoves.Add(board.GetTile(pos + increment));
+                        bishopMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    bishopMoves.Add(board.GetTile(pos + increment));
+                    bishopMoves.Add(pos + increment);
                 }
 
             } else {
@@ -265,11 +265,11 @@ public class Moves : MonoBehaviour {
             if (IsInBounds(pos + increment) && IsFree(pos + increment)) {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        bishopMoves.Add(board.GetTile(pos + increment));
+                        bishopMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    bishopMoves.Add(board.GetTile(pos + increment));
+                    bishopMoves.Add(pos + increment);
                 }
             } else {
                 break;
@@ -285,11 +285,11 @@ public class Moves : MonoBehaviour {
             if (IsInBounds(pos + increment) && IsFree(pos + increment)) {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        bishopMoves.Add(board.GetTile(pos + increment));
+                        bishopMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    bishopMoves.Add(board.GetTile(pos + increment));
+                    bishopMoves.Add(pos + increment);
                 }
             } else {
                 break;
@@ -306,11 +306,11 @@ public class Moves : MonoBehaviour {
                 if (pieceAtTile = GetPieceAtTile(pos + increment)) {
                     pieceAtTileComponent = piece.GetComponent<Piece>();
                     if (!GetColour(pieceAtTile).Equals(piece.colour)) {
-                        bishopMoves.Add(board.GetTile(pos + increment));
+                        bishopMoves.Add(pos + increment);
                         break;
                     }
                 } else {
-                    bishopMoves.Add(board.GetTile(pos + increment));
+                    bishopMoves.Add(pos + increment);
                 }
             } else {
                 break;
@@ -322,12 +322,12 @@ public class Moves : MonoBehaviour {
 
     }
 
-    private List<GameObject> GetQueenMoves(Vector2 pos) {
+    private List<Vector2> GetQueenMoves(Vector2 pos) {
         return GetBishopMoves(pos).Concat(GetRookMoves(pos)).ToList();
     }
 
-    private List<GameObject> GetPawnMoves(Vector2 pos) {
-        List<GameObject> pawnMoves = new List<GameObject>();
+    private List<Vector2> GetPawnMoves(Vector2 pos) {
+        List<Vector2> pawnMoves = new List<Vector2>();
         GameObject diagonalPiece;
 
         Vector2 upRight = new Vector2(1, 1);
@@ -339,47 +339,47 @@ public class Moves : MonoBehaviour {
         switch (piece.colour) {
             case Board.Colours.black:
                 if (IsInBounds(pos + Vector2.down) && !GetPieceAtTile(pos + Vector2.down)) {
-                    pawnMoves.Add(board.GetTile(pos + Vector2.down));
+                    pawnMoves.Add(pos + Vector2.down);
                 }
 
                 if (piece.moveCount == 0 && !GetPieceAtTile(pos + Vector2.down)) {
                     if (IsInBounds(pos + (Vector2.down * 2)) && !GetPieceAtTile(pos + (Vector2.down * 2))) {
-                        pawnMoves.Add(board.GetTile(pos + (Vector2.down * 2)));
+                        pawnMoves.Add(pos + (Vector2.down * 2));
                     }
                 }
 
                 if (diagonalPiece = GetPieceAtTile(pos + downLeft)) {
                     if (!GetColour(diagonalPiece).Equals(piece.colour)) {
-                        pawnMoves.Add(board.GetTile(pos + downLeft));
+                        pawnMoves.Add(pos + downLeft);
                     }
                 }
 
                 if (diagonalPiece = GetPieceAtTile(pos + downRight)) {
                     if (!GetColour(diagonalPiece).Equals(piece.colour)) {
-                        pawnMoves.Add(board.GetTile(pos + downRight));
+                        pawnMoves.Add(pos + downRight);
                     }
                 }
                 break;
             case Board.Colours.white:
                 if (IsInBounds(pos + Vector2.up) && !GetPieceAtTile(pos + Vector2.up)) {
-                    pawnMoves.Add(board.GetTile(pos + Vector2.up));
+                    pawnMoves.Add(pos + Vector2.up);
                 }
 
                 if (piece.moveCount == 0 && !GetPieceAtTile(pos + Vector2.up)) {
                     if (IsInBounds(pos + (Vector2.up * 2)) && !GetPieceAtTile(pos + (Vector2.up * 2))) {
-                        pawnMoves.Add(board.GetTile(pos + (Vector2.up * 2)));
+                        pawnMoves.Add(pos + (Vector2.up * 2));
                     }
                 }
 
                 if (diagonalPiece = GetPieceAtTile(pos + upLeft)) {
                     if (!GetColour(diagonalPiece).Equals(piece.colour)) {
-                        pawnMoves.Add(board.GetTile(pos + upLeft));
+                        pawnMoves.Add(pos + upLeft);
                     }
                 }
 
                 if (diagonalPiece = GetPieceAtTile(pos + upRight)) {
                     if (!GetColour(diagonalPiece).Equals(piece.colour)) {
-                        pawnMoves.Add(board.GetTile(pos + upRight));
+                        pawnMoves.Add(pos + upRight);
                     }
                 }
                 break;
@@ -388,6 +388,16 @@ public class Moves : MonoBehaviour {
         }
 
         return pawnMoves;
+    }
+
+    private List<GameObject> GetTiles(List<Vector2> posList) {
+        List<GameObject> tiles = new List<GameObject>();
+
+        foreach (Vector2 pos in posList) {
+            tiles.Add(board.GetTile(pos));
+        }
+
+        return tiles;
     }
 
 
