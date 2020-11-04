@@ -27,18 +27,24 @@ public class Board : MonoBehaviour {
     private Vector3 blackDeathPos = new Vector3(-4.25f, 4.3f, 0f);
     private Vector3 whiteDeathPos = new Vector3(-4.25f, -4.3f, 0f);
 
+    private PlayerManager playerManager;
+
 
 
     public void Start() {
         dead = GameObject.FindGameObjectWithTag("Dead");
         BoardSetup setup = this.gameObject.GetComponent<BoardSetup>();
+        playerManager = this.gameObject.GetComponent<PlayerManager>();
+        setup.InitPlayers();
         setup.InitBoard();
         setup.InitPieces();
+
+        playerManager.SetInitialTurnState();
 
         board = setup.GetBoard();
     }
 
-    public void MovePiece(GameObject tileA, GameObject tileB, GameObject piece, bool valid) {
+    public bool MovePiece(GameObject tileA, GameObject tileB, GameObject piece, bool valid) {
         Tile tileAComponent = tileA.GetComponent<Tile>();
         Tile tileBComponent = tileB.GetComponent<Tile>();
         GameObject tileBPiece = tileBComponent.piece;
@@ -50,6 +56,7 @@ public class Board : MonoBehaviour {
                     Piece tileBPieceComponent = tileBPiece.GetComponent<Piece>();
                     if (tileBPieceComponent.colour == tileAPieceComponent.colour) {
                         piece.transform.position = tileA.transform.position;
+                        return false;
                     } else {
                         tileBPieceComponent.parentTile = null;
                         KillPiece(tileBPiece);
@@ -62,6 +69,9 @@ public class Board : MonoBehaviour {
                         piece.transform.parent = tileB.transform;
 
                         tileAPieceComponent.moveCount++;
+
+                        playerManager.SwapPlayerState();
+                        return true;
                     }
                 } else {
                     tileBComponent.piece = piece;
@@ -72,10 +82,16 @@ public class Board : MonoBehaviour {
                     piece.transform.parent = tileB.transform;
 
                     tileAPieceComponent.moveCount++;
+
+                    playerManager.SwapPlayerState();
+                    return true;
                 }
             } else {
                 piece.transform.position = tileAPieceComponent.parentTile.transform.position;
+                return false;
             }
+        } else {
+            return false;
         }
     }
 
@@ -92,6 +108,10 @@ public class Board : MonoBehaviour {
             piece.transform.localScale *= 0.5f;
             piece.transform.position = blackDeathPos + new Vector3(0.5f * blackDeathCount, 0f, 0f);
         }
+    }
+
+    public void FinishedTurn() {
+
     }
 
     public GameObject GetTile(int x, int y) {

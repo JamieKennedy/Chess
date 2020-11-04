@@ -36,19 +36,23 @@ public class DragAndDrop : MonoBehaviour {
 
 
     private void OnMouseDown() {
-        if (Input.GetMouseButtonDown(0)) {
-            isBeingDragged = true;
-            moves.GetMoves();
-            moves.HighlightTiles();
-            gameObject.transform.localScale = defaultScale * 1.2f;
+        if (piece.canMove) {
+            if (Input.GetMouseButtonDown(0)) {
+                isBeingDragged = true;
+                moves.GetMoves();
+                moves.HighlightTiles();
+                gameObject.transform.localScale = defaultScale * 1.2f;
+            }
         }
     }
 
     private void OnMouseUp() {
-        isBeingDragged = false;
-        board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject, IsValidMove());
-        moves.ResetTileHighlights();
-        gameObject.transform.localScale = defaultScale;
+        if (piece.canMove) {
+            isBeingDragged = false;
+            board.MovePiece(piece.parentTile, tilePieceIsOver, gameObject, IsValidMove());
+            moves.ResetTileHighlights();
+            gameObject.transform.localScale = defaultScale;
+        }
     }
 
     private void SetTilePieceIsOver() {

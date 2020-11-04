@@ -15,12 +15,29 @@ public class BoardSetup : MonoBehaviour {
 
     Sprites sprites;
 
+    public GameObject playerPrefab;
+
+    private PlayerManager playerManager;
+
+
+
     public void Awake() {
         sprites = gameObject.GetComponent<Sprites>();
+        playerManager = gameObject.GetComponent<PlayerManager>();
     }
 
     public GameObject[,] GetBoard() {
         return board;
+    }
+
+    public void InitPlayers() {
+        playerManager.player1 = Instantiate(playerPrefab);
+        playerManager.player1Component = playerManager.player1.GetComponent<Players>();
+        playerManager.player1Component.playerColour = Board.Colours.white;
+
+        playerManager.player2 = Instantiate(playerPrefab);
+        playerManager.player2Component = playerManager.player2.GetComponent<Players>();
+        playerManager.player2Component.playerColour = Board.Colours.black;
     }
 
     public void InitBoard() {
@@ -84,6 +101,7 @@ public class BoardSetup : MonoBehaviour {
                         SetPieceSprite(pieceComponent.type, pieceComponent.colour, ref sr);
                     }
                 }
+                playerManager.player1Component.alivePieces.Add(piece);
             }
         }
 
@@ -121,6 +139,7 @@ public class BoardSetup : MonoBehaviour {
                         SetPieceSprite(pieceComponent.type, pieceComponent.colour, ref sr);
                     }
                 }
+                playerManager.player2Component.alivePieces.Add(piece);
             }
         }
     }

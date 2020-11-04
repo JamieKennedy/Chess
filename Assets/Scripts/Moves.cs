@@ -318,7 +318,7 @@ public class Moves : MonoBehaviour {
                     pawnMoves.Add(board.GetTile(x, y - 1));
                 }
 
-                if (piece.moveCount == 0) {
+                if (piece.moveCount == 0 && !GetPieceAtTile(x, y - 1)) {
                     if (IsInBounds(x, y - 2) && !GetPieceAtTile(x, y - 2)) {
                         pawnMoves.Add(board.GetTile(x, y - 2));
                     }
@@ -341,7 +341,7 @@ public class Moves : MonoBehaviour {
                     pawnMoves.Add(board.GetTile(x, y + 1));
                 }
 
-                if (piece.moveCount == 0) {
+                if (piece.moveCount == 0 && !GetPieceAtTile(x, y + 1)) {
                     if (IsInBounds(x, y + 2) && !GetPieceAtTile(x, y + 2)) {
                         pawnMoves.Add(board.GetTile(x, y + 2));
                     }

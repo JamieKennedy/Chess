@@ -12,4 +12,6 @@ public class Piece : MonoBehaviour {
     public bool canMove = true;
 
     public int moveCount;
+
+    public GameObject parentPlayer;
 }
