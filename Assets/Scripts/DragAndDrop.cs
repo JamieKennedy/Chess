@@ -60,7 +60,7 @@ public class DragAndDrop : MonoBehaviour {
         Collider col;
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
-                tile = board.GetTile(x, y);
+                tile = board.GetTile(new Vector2(x, y));
                 col = tile.GetComponent<Collider>();
 
                 if (col.bounds.Contains(transform.position)) {

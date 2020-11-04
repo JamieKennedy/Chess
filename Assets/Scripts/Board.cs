@@ -114,7 +114,7 @@ public class Board : MonoBehaviour {
 
     }
 
-    public GameObject GetTile(int x, int y) {
-        return board[y, x];
+    public GameObject GetTile(Vector2 pos) {
+        return board[(int)pos.y, (int)pos.x];
     }
 }

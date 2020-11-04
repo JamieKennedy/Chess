@@ -52,8 +52,7 @@ public class BoardSetup : MonoBehaviour {
                 tileComponent = currentTile.GetComponent<Tile>();
 
                 board[y, x] = currentTile;
-                tileComponent.boardPosX = x;
-                tileComponent.boardPosY = y;
+                tileComponent.pos = new Vector2(x, y);
 
                 currentTile.transform.parent = this.gameObject.transform;
                 sr = currentTile.GetComponent<SpriteRenderer>();
