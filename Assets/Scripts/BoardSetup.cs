@@ -98,9 +98,11 @@ public class BoardSetup : MonoBehaviour {
                     } else {
                         pieceComponent.type = Board.PieceType.king;
                         SetPieceSprite(pieceComponent.type, pieceComponent.colour, ref sr);
+                        playerManager.player1Component.kingPiece = piece;
                     }
                 }
                 playerManager.player1Component.alivePieces.Add(piece);
+                pieceComponent.parentPlayer = playerManager.player1;
             }
         }
 
@@ -136,9 +138,11 @@ public class BoardSetup : MonoBehaviour {
                     } else {
                         pieceComponent.type = Board.PieceType.king;
                         SetPieceSprite(pieceComponent.type, pieceComponent.colour, ref sr);
+                        playerManager.player2Component.kingPiece = piece;
                     }
                 }
                 playerManager.player2Component.alivePieces.Add(piece);
+                pieceComponent.parentPlayer = playerManager.player2;
             }
         }
     }

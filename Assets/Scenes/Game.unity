@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 1075522609}
   - component: {fileID: 1075522611}
   - component: {fileID: 1075522612}
+  - component: {fileID: 1075522613}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -293,6 +294,24 @@ MonoBehaviour:
     type: 3}
   piecePrefab: {fileID: 5911342965286098412, guid: f4162c74145f9ea42a6603224949babb,
     type: 3}
+  playerPrefab: {fileID: 1889944607474817243, guid: f3ce429a2046a79489c6b6722da96cda,
+    type: 3}
+--- !u!114 &1075522613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075522608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544d2725f7f8af94091f7b3ad59a5d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player1Component: {fileID: 0}
+  player2Component: {fileID: 0}
 --- !u!1 &1893264643
 GameObject:
   m_ObjectHideFlags: 0

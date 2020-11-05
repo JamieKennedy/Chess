@@ -35,13 +35,19 @@ public class Board : MonoBehaviour {
         dead = GameObject.FindGameObjectWithTag("Dead");
         BoardSetup setup = this.gameObject.GetComponent<BoardSetup>();
         playerManager = this.gameObject.GetComponent<PlayerManager>();
-        setup.InitPlayers();
         setup.InitBoard();
+        setup.InitPlayers();
         setup.InitPieces();
+
+
+
+
+        board = setup.GetBoard();
+
 
         playerManager.SetInitialTurnState();
 
-        board = setup.GetBoard();
+
     }
 
     public bool MovePiece(GameObject tileA, GameObject tileB, GameObject piece, bool valid) {

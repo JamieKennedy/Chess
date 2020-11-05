@@ -20,20 +20,9 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public void SetInitialTurnState() {
-        if (GetRandom() > 0.5) {
-            player1Component.SetCanMove(true);
-            player2Component.SetCanMove(false);
-        } else {
-            player1Component.SetCanMove(false);
-            player2Component.SetCanMove(true);
-        }
+        player1Component.SetCanMove(true);
+        player2Component.SetCanMove(false);
     }
 
-    // Returns a random double between 0 and 1
-    private double GetRandom() {
-        System.Random rnd = new System.Random();
-        double n = rnd.NextDouble();
 
-        return n;
-    }
 }

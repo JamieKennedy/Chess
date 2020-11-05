@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Sprites : MonoBehaviour {
     public Sprite tileDark;
-    public Sprite tileDarkBorder;
+    public Sprite tileDarkHighlighted;
     public Sprite tileLight;
-    public Sprite tileLightBorder;
+    public Sprite tileLightHighlighted;
 
     public Sprite kingBlack;
     public Sprite kingWhite;

@@ -18,10 +18,21 @@ public class Players : MonoBehaviour {
 
     public bool currentTurn;
 
+    private Vector2 pos;
+    private Board.PieceType pieceType;
+    private Piece pieceComponent;
+
+    public GameObject kingPiece;
+
     public void SetCanMove(bool state) {
         currentTurn = state;
         foreach (GameObject piece in alivePieces) {
+            pieceComponent = piece.GetComponent<Piece>();
+            pos = pieceComponent.parentTile.GetComponent<Tile>().pos;
+            pieceType = pieceComponent.type;
+
             piece.GetComponent<Piece>().canMove = state;
+            piece.GetComponent<Moves>().GetMoves(pos, pieceType);
         }
     }
 

@@ -18,7 +18,7 @@ public class Moves : MonoBehaviour {
     private GameObject parentTile;
     private Tile parentTileComponent;
 
-    private void Start() {
+    private void Awake() {
         piece = gameObject.GetComponent<Piece>();
         gameManager = GameObject.FindGameObjectWithTag("GameController");
         sprites = gameManager.GetComponent<Sprites>();
@@ -27,27 +27,25 @@ public class Moves : MonoBehaviour {
 
     }
 
-    public void GetMoves() {
-        parentTile = piece.parentTile;
-        parentTileComponent = parentTile.GetComponent<Tile>();
-        switch (piece.type) {
+    public void GetMoves(Vector2 pos, Board.PieceType type) {
+        switch (type) {
             case Board.PieceType.king:
-                moves = GetTiles(GetKingMoves(parentTileComponent.pos));
+                moves = GetTiles(GetKingMoves(pos));
                 break;
             case Board.PieceType.queen:
-                moves = GetTiles(GetQueenMoves(parentTileComponent.pos));
+                moves = GetTiles(GetQueenMoves(pos));
                 break;
             case Board.PieceType.knight:
-                moves = GetTiles(GetKnightMoves(parentTileComponent.pos));
+                moves = GetTiles(GetKnightMoves(pos));
                 break;
             case Board.PieceType.bishop:
-                moves = GetTiles(GetBishopMoves(parentTileComponent.pos));
+                moves = GetTiles(GetBishopMoves(pos));
                 break;
             case Board.PieceType.rook:
-                moves = GetTiles(GetRookMoves(parentTileComponent.pos));
+                moves = GetTiles(GetRookMoves(pos));
                 break;
             case Board.PieceType.pawn:
-                moves = GetTiles(GetPawnMoves(parentTileComponent.pos));
+                moves = GetTiles(GetPawnMoves(pos));
                 break;
             default:
                 break;
@@ -60,9 +58,9 @@ public class Moves : MonoBehaviour {
             foreach (GameObject tile in moves) {
                 sr = tile.GetComponent<SpriteRenderer>();
                 if (sr.sprite.Equals(sprites.tileDark)) {
-                    sr.sprite = sprites.tileDarkBorder;
+                    sr.sprite = sprites.tileDarkHighlighted;
                 } else if (sr.sprite.Equals(sprites.tileLight)) {
-                    sr.sprite = sprites.tileLightBorder;
+                    sr.sprite = sprites.tileLightHighlighted;
                 }
             }
         }
@@ -72,9 +70,9 @@ public class Moves : MonoBehaviour {
         SpriteRenderer sr;
         foreach (GameObject tile in moves) {
             sr = tile.GetComponent<SpriteRenderer>();
-            if (sr.sprite.Equals(sprites.tileDarkBorder)) {
+            if (sr.sprite.Equals(sprites.tileDarkHighlighted)) {
                 sr.sprite = sprites.tileDark;
-            } else if (sr.sprite.Equals(sprites.tileLightBorder)) {
+            } else if (sr.sprite.Equals(sprites.tileLightHighlighted)) {
                 sr.sprite = sprites.tileLight;
             }
         }
