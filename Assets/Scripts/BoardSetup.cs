@@ -34,10 +34,12 @@ public class BoardSetup : MonoBehaviour {
         playerManager.player1 = Instantiate(playerPrefab);
         playerManager.player1Component = playerManager.player1.GetComponent<Players>();
         playerManager.player1Component.playerColour = Board.Colours.white;
+        playerManager.player1Component.playerNum = Board.Players.player1;
 
         playerManager.player2 = Instantiate(playerPrefab);
         playerManager.player2Component = playerManager.player2.GetComponent<Players>();
         playerManager.player2Component.playerColour = Board.Colours.black;
+        playerManager.player2Component.playerNum = Board.Players.player2;
     }
 
     public void InitBoard() {

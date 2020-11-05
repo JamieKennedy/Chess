@@ -78,7 +78,7 @@ public class Moves : MonoBehaviour {
         }
     }
 
-    private List<Vector2> GetKingMoves(Vector2 pos) {
+    public List<Vector2> GetKingMoves(Vector2 pos) {
         List<Vector2> kingMoves = new List<Vector2>();
         Vector2 kingMove;
 
@@ -105,7 +105,7 @@ public class Moves : MonoBehaviour {
         return kingMoves;
     }
 
-    private List<Vector2> GetKnightMoves(Vector2 pos) {
+    public List<Vector2> GetKnightMoves(Vector2 pos) {
         List<Vector2> knightMoves = new List<Vector2>();
         Vector2 knightMove;
 
@@ -132,7 +132,7 @@ public class Moves : MonoBehaviour {
         return knightMoves;
     }
 
-    private List<Vector2> GetRookMoves(Vector2 pos) {
+    public List<Vector2> GetRookMoves(Vector2 pos) {
         List<Vector2> rookMoves = new List<Vector2>();
         Vector2 increment;
         GameObject pieceAtTile;
@@ -223,7 +223,7 @@ public class Moves : MonoBehaviour {
 
     }
 
-    private List<Vector2> GetBishopMoves(Vector2 pos) {
+    public List<Vector2> GetBishopMoves(Vector2 pos) {
         List<Vector2> bishopMoves = new List<Vector2>();
         Vector2 increment;
         GameObject pieceAtTile;
@@ -320,11 +320,11 @@ public class Moves : MonoBehaviour {
 
     }
 
-    private List<Vector2> GetQueenMoves(Vector2 pos) {
+    public List<Vector2> GetQueenMoves(Vector2 pos) {
         return GetBishopMoves(pos).Concat(GetRookMoves(pos)).ToList();
     }
 
-    private List<Vector2> GetPawnMoves(Vector2 pos) {
+    public List<Vector2> GetPawnMoves(Vector2 pos) {
         List<Vector2> pawnMoves = new List<Vector2>();
         GameObject diagonalPiece;
 
@@ -388,7 +388,7 @@ public class Moves : MonoBehaviour {
         return pawnMoves;
     }
 
-    private List<GameObject> GetTiles(List<Vector2> posList) {
+    public List<GameObject> GetTiles(List<Vector2> posList) {
         List<GameObject> tiles = new List<GameObject>();
 
         foreach (Vector2 pos in posList) {

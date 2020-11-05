@@ -19,6 +19,11 @@ public class Board : MonoBehaviour {
         white
     }
 
+    public enum Players {
+        player1,
+        player2
+    }
+
     public GameObject[,] board = new GameObject[8, 8];
 
     private GameObject dead;
@@ -29,6 +34,17 @@ public class Board : MonoBehaviour {
 
     private PlayerManager playerManager;
 
+    public HashSet<Vector2> player1AllMoves;
+    public HashSet<Vector2> player1KingMoves;
+
+    public List<Vector2> player1AllMovesList;
+    public List<Vector2> player1KingMovesList;
+
+    public HashSet<Vector2> player2AllMoves;
+    public HashSet<Vector2> player2KingMoves;
+
+    public List<Vector2> player2AllMovesList;
+    public List<Vector2> player2KingMovesList;
 
 
     public void Start() {
@@ -77,6 +93,7 @@ public class Board : MonoBehaviour {
                         tileAPieceComponent.moveCount++;
 
                         playerManager.SwapPlayerState();
+                        FinishedTurn();
                         return true;
                     }
                 } else {
@@ -90,6 +107,7 @@ public class Board : MonoBehaviour {
                     tileAPieceComponent.moveCount++;
 
                     playerManager.SwapPlayerState();
+                    FinishedTurn();
                     return true;
                 }
             } else {
@@ -106,18 +124,59 @@ public class Board : MonoBehaviour {
         piece.transform.parent = dead.transform;
         pieceComponent.canMove = false;
         if (pieceComponent.colour == Colours.white) {
+            playerManager.player1Component.alivePieces.Remove(piece);
+            playerManager.player1Component.deadPieces.Add(piece);
             whiteDeathCount++;
             piece.transform.localScale *= 0.5f;
             piece.transform.position = whiteDeathPos + new Vector3(0.5f * whiteDeathCount, 0f, 0f);
         } else {
+            playerManager.player2Component.alivePieces.Remove(piece);
+            playerManager.player2Component.deadPieces.Add(piece);
             blackDeathCount++;
             piece.transform.localScale *= 0.5f;
             piece.transform.position = blackDeathPos + new Vector3(0.5f * blackDeathCount, 0f, 0f);
         }
     }
 
-    public void FinishedTurn() {
+    private void FinishedTurn() {
+        player1AllMoves = playerManager.player1Component.GetAllMoves();
+        player1KingMoves = playerManager.player1Component.GetKingMoves();
 
+        player1AllMovesList = new List<Vector2>(player1AllMoves);
+        player1KingMovesList = new List<Vector2>(player1KingMoves);
+
+
+        player2AllMoves = playerManager.player2Component.GetAllMoves();
+        player2KingMoves = playerManager.player2Component.GetKingMoves();
+
+        player2AllMovesList = new List<Vector2>(player2AllMoves);
+        player2KingMovesList = new List<Vector2>(player2KingMoves);
+
+        if (IsCheckmate(Players.player1)) {
+            Debug.Log("Player 1 is in checkmate");
+        }
+
+        if (IsCheckmate(Players.player2)) {
+            Debug.Log("Player 2 is in checkmate");
+        }
+
+
+    }
+
+    private bool IsCheckmate(Players player) {
+        if (player == Players.player1) {
+            if (player1KingMoves.IsSubsetOf(player2AllMoves) && player1KingMoves.Count != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            if (player2KingMoves.IsSubsetOf(player1AllMoves) && player2KingMoves.Count != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     public GameObject GetTile(Vector2 pos) {

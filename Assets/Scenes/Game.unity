@@ -157,7 +157,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
+  m_BackGroundColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -262,10 +262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea1ee5420af75e499d309f47cd7ee41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileDark: {fileID: 21300000, guid: 69ca9d3a114f7a0408f660cef9c1238c, type: 3}
-  tileDarkBorder: {fileID: 21300000, guid: afee50fd50ab19f40b778ddc45895ee7, type: 3}
-  tileLight: {fileID: 21300000, guid: 94884129a9113724faae6f807db302db, type: 3}
-  tileLightBorder: {fileID: 21300000, guid: 8f32bd23119be0a4bbd7a4ad01770be0, type: 3}
+  tileDark: {fileID: 21300000, guid: 62980960d4b942747bb6790d70de1f5f, type: 3}
+  tileDarkHighlighted: {fileID: 21300000, guid: f723fc25b9c3cdd45ac391eba4bd1093,
+    type: 3}
+  tileLight: {fileID: 21300000, guid: 60e0a04cb918dbe449e8e4fb9db96fe5, type: 3}
+  tileLightHighlighted: {fileID: 21300000, guid: 4d13773dcd04642408afc59f4af4595d,
+    type: 3}
   kingBlack: {fileID: 21300000, guid: 37a6560c4c506bc46b5416e834b42f0b, type: 3}
   kingWhite: {fileID: 21300000, guid: d8567d6717f7a5347a21e53f2bcd5af8, type: 3}
   queenBlack: {fileID: 21300000, guid: 45ec312fdbacc5f4b950639389137a14, type: 3}
